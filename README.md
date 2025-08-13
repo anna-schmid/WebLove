@@ -1,3 +1,3 @@
 # WebLove
 
-Just a tiny wednesday fluke.
+Just a tiny Wednesday fluke.
