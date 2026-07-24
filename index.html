@@ -67,3 +67,48 @@
         transform:translateX(-50%) scale(.9);
         white-space:normal;
         max-width:70vw;
+        text-align:center;
+      }
+      .bubble::after{display:none;}
+      .bubble.show{transform:translateX(-50%) scale(1);}
+    }
+  </style>
+</head>
+<body>
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+  <div class="noise"></div>
+
+  <main class="stage" aria-live="polite">
+    <div class="you" id="you" role="button" aria-label="Click me">
+      <img id="you-img" alt="You, dancing" src="image.png" />
+      <div class="bubble" id="bubble" role="status" aria-live="assertive">Ik hou van jou 💚💗</div>
+    </div>
+    <div class="floor" aria-hidden="true"></div>
+  </main>
+
+  <div class="tag">Click on Anna</div>
+
+  <script>
+    const you = document.getElementById('you');
+    const bubble = document.getElementById('bubble');
+    let timer;
+    you.addEventListener('click', () => {
+      bubble.textContent = 'Ik hou van jou 💚💗';
+      bubble.classList.add('show');
+      clearTimeout(timer);
+      timer = setTimeout(() => bubble.classList.remove('show'), 1600);
+    });
+
+    you.addEventListener('pointerenter', () => you.style.animationDuration = '1.2s');
+    you.addEventListener('pointerleave', () => you.style.animationDuration = '1.6s');
+
+    const fit = () => {
+      const w = Math.min(window.innerWidth * .7, 420);
+      document.querySelector('.you').style.width = w + 'px';
+    };
+    fit();
+    window.addEventListener('resize', fit);
+  </script>
+</body>
+</html>
